@@ -31,23 +31,6 @@ def new_user():
     return auth_data
 
 
-# Логинит зарегистрированного пользователя
-@pytest.fixture()
-def login(new_user):
-
-    # собираем тело запроса
-    payload = {
-        "email": new_user[0],
-        "password": new_user[1]
-    }
-
-    # отправляем запрос на авторизацию пользователя и сохраняем ответ в переменную response
-    response = requests.post(TestEndpoint.LOGIN, json=payload)
-
-    # возвращаем список
-    return response
-
-
 # Возвращает список токенов авторизированного пользователя
 @pytest.fixture()
 def token(login):
